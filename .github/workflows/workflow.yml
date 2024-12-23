@@ -1,4 +1,4 @@
-name: Publish and Test Python Package
+name: Python Package Publish and Streamlit Test
 
 on:
   push:
@@ -6,53 +6,64 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Publish Package
+  publish:
+    name: Build and Publish to PyPI
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Python 3.11
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
+      # Step 3: Install dependencies for building the package
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine pyngrok
 
-      - name: Build package
+      # Step 4: Build the package
+      - name: Build Python package
         run: |
           python setup.py sdist bdist_wheel
 
+      # Step 5: Publish the package to PyPI
       - name: Publish to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          python -m twine upload dist/*
+          python -m twine upload --verbose dist/*
 
   test:
-    name: Test the Script
+    name: Test Streamlit Application
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Python 3.11
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
+      # Step 3: Install dependencies for running the Streamlit app
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pyngrok
 
-      - name: Test Streamlit Colab Script
+      # Step 4: Run the Streamlit application with ngrok
+      - name: Run Streamlit Application
+        env:
+          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
         run: |
-          python streamlit_colab/core.py app.py ${{ secrets.NGROK_TOKEN }} --port 8501
+          python streamlit_colab/core.py app.py --port 8501
