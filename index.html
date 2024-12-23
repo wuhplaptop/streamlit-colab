@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamlit Colab Documentation</title>
+    <style>
+
+        body, h1, h2, h3, p, ul, li, pre, code {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0 20px 0;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 3em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Streamlit Colab</h1>
+        <p>Run Streamlit apps with ngrok tunneling easily from the command line.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#usage">Usage</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>
+                <strong>Streamlit Colab</strong> is a command-line tool that allows you to run Streamlit applications with ngrok tunneling. 
+                This makes your local Streamlit app accessible via a public URL, which is especially useful for sharing your app with others or for testing purposes.
+            </p>
+        </section>
+
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>To install <strong>Streamlit Colab</strong>, follow these steps:</p>
+            <pre><code>pip install streamlit_colab</code></pre>
+            <p>Alternatively, you can install it from the source:</p>
+            <pre><code>git clone https:
+cd streamlit_colab
+pip install .</code></pre>
+        </section>
+
+        <section id="usage">
+            <h2>Usage</h2>
+            <p>Run your Streamlit app with ngrok tunneling using the following command:</p>
+            <pre><code>stc &lt;app.py&gt; &lt;ngrok_token&gt; [--port PORT]</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>stc main.py 2qbIIljnMlDhJtg9TIA1S0JeI4u_3aoQpg43jbAYD2RPTw4Mu --port 8501</code></pre>
+            <p><strong>Using Environment Variable for ngrok Token:</strong></p>
+            <pre><code>export NGROK_TOKEN=your_ngrok_token_here
+stc main.py --port 8501</code></pre>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Streamlit Colab. All rights reserved.</p>
+    </footer>
+</body>
+</html>i
