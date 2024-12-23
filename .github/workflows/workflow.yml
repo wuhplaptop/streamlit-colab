@@ -55,4 +55,4 @@ jobs:
 
       - name: Test Streamlit Colab Script
         run: |
-          python your_script.py app.py ${{ secrets.NGROK_TOKEN }} --port 8501
+          python streamlit_colab/core.py app.py ${{ secrets.NGROK_TOKEN }} --port 8501
