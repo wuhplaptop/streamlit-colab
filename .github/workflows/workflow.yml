@@ -13,23 +13,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Step 2: Set Up Python environment
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
+      # Step 3: Install build dependencies
       - name: Install Build Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
 
+      # Step 4: Build the Python package
       - name: Build Package
         run: |
           python setup.py sdist bdist_wheel
 
+      # Step 5: Upload package to PyPI
       - name: Upload to PyPI
         env:
           TWINE_USERNAME: __token__
@@ -43,24 +48,30 @@ jobs:
     needs: build
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Step 2: Set Up Python environment
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
+      # Step 3: Install application dependencies
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install streamlit pyngrok jq
 
+      # Step 4: Run Streamlit App with CLI
       - name: Run Streamlit App with ngrok
         env:
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
         run: |
-          nohup python streamlit_colab/core.py app.py $NGROK_TOKEN --port 8501 &
+          nohup python -c "from streamlit_colab.core import cli; cli()" /path/to/your/app.py $NGROK_TOKEN --port 8501 &
           sleep 10  # Wait for initialization
+          
+          # Fetch and display the public ngrok URL
           PUBLIC_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
           echo "Streamlit app is accessible at: $PUBLIC_URL"
