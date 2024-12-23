@@ -131,6 +131,12 @@ def main():
 
     run_streamlit(args.app_path, args.ngrok_token, args.port)
 
+def cli():
+    """
+    Entry point for the stc command-line interface.
+    """
+    main()
+
 if __name__ == '__main__':
     setup_logging()
     main()
