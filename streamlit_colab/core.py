@@ -29,7 +29,7 @@ def run_streamlit(app_path, ngrok_token, port=8501):
 def main():
     """
     Command-line interface for the Streamlit app with ngrok.
-    Usage: stc <app_path> <ngrok_token>
+    Usage: stc <app_path> <ngrok_token> [port]
     """
     parser = argparse.ArgumentParser(description="Run a Streamlit app with ngrok tunneling.")
     parser.add_argument(
@@ -43,8 +43,9 @@ def main():
         help="ngrok authentication token."
     )
     parser.add_argument(
-        "--port",
+        "port",
         type=int,
+        nargs="?",
         default=8501,
         help="Port for Streamlit to run on (default: 8501)."
     )
