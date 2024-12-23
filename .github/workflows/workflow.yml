@@ -69,7 +69,9 @@ jobs:
         env:
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
         run: |
-          nohup python -c "from streamlit_colab.core import cli; cli()" /path/to/your/app.py $NGROK_TOKEN --port 8501 &
+          APP_PATH="/path/to/your/app.py"  # Set your app path
+          PORT=5005  # Change this port as needed
+          nohup stc $APP_PATH $NGROK_TOKEN $PORT &
           sleep 10  # Wait for initialization
           
           # Fetch and display the public ngrok URL
