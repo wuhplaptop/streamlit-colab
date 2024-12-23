@@ -26,8 +26,7 @@ def setup_ngrok(token: str, port: int = 8501) -> str:
     """
     try:
         ngrok.set_auth_token(token)
-
-        conf.get_default().region = "us"  
+        conf.get_default().region = "us"  # Change region as needed
         tunnel = ngrok.connect(port, bind_tls=True)
         public_url = tunnel.public_url
         logging.info(f"ngrok tunnel established: {public_url}")
