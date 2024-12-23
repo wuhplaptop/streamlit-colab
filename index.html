@@ -139,7 +139,7 @@
         <section id="installation">
             <h2>Installation</h2>
             <p>To install <strong>Streamlit Colab</strong>, follow these steps:</p>
-            <pre><code>pip install streamlit_colab</code></pre>
+            <pre><code>pip install streamlit-colab</code></pre>
             <p>Alternatively, you can install it from the source:</p>
             <pre><code>git clone https://github.com/yourusername/streamlit_colab.git
 cd streamlit_colab
@@ -172,28 +172,37 @@ pip install .</code></pre>
             <p>You can set the ngrok token as an environment variable and omit it from the command:</p>
             <pre><code>export NGROK_TOKEN=&lt;your_ngrok_token&gt;
 stc /path/to/your/app.py</code></pre>
-            <p><em>Note:</em> This will default to port <code>8501</code>. To override the port:</p>
+            <p><em>Note:</em> This will default to port <code>8501</code>.</p>
+            <p>To override the port:</p>
             <pre><code>stc /path/to/your/app.py 5005</code></pre>
         </section>
 
         <section id="troubleshooting">
             <h2>Troubleshooting</h2>
-            <h3>1. ImportError: cannot import name 'cli' from 'streamlit_colab.core'</h3>
+            <h3>1. ImportError: cannot import name 'cli' from 'streamlit-colab.core'</h3>
             <p>Ensure that your <code>core.py</code> includes the <code>cli</code> function and that the <code>stc</code> script correctly points to it.</p>
+            
             <h3>2. ngrok Tunnel Not Establishing</h3>
             <ul>
                 <li>Verify that your ngrok token is correct.</li>
                 <li>Ensure that the specified port (e.g., <code>8501</code> or <code>5005</code>) is not blocked by your firewall.</li>
                 <li>Check your internet connection.</li>
             </ul>
+            
             <h3>3. Streamlit App Fails to Start</h3>
             <ul>
                 <li>Ensure Streamlit is installed: <code>pip install streamlit</code></li>
                 <li>Verify the path to your Streamlit app file.</li>
                 <li>Check for errors in your Streamlit app code.</li>
             </ul>
+            
             <h3>4. File Already Exists on PyPI</h3>
             <p>If you encounter an error when uploading to PyPI stating that the file already exists, update the version number in your <code>setup.py</code> and try again.</p>
+            <pre><code>setup(
+    name="streamlit-colab",
+    version="0.1.1",  # Increment the version here
+    ...
+)</code></pre>
         </section>
 
         <section id="contributing">
